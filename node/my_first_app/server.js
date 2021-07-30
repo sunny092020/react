@@ -1,3 +1,11 @@
 require("http").createServer((inRequest, inResponse) => {
-      inResponse.end("Hello from my first Node Web server");
-    }).listen(8000);
+  const requestModule = require("request");
+  requestModule(
+    "http://worldtimeapi.org/api/timezone/America/New_York",
+    function (inErr, inResp, inBody) {
+      inResponse.end(
+        `Hello from my first Node Web server: ${inBody}`
+      );
+    }
+  );
+}).listen(8000);
