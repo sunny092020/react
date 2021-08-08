@@ -5,14 +5,14 @@ import { AuthContext } from "../../context/AuthContext";
 import { CircularProgress } from "@material-ui/core";
 
 export default function Login() {
-  const email = useRef();
+  const username = useRef();
   const password = useRef();
   const { isFetching, dispatch } = useContext(AuthContext);
 
   const handleClick = (e) => {
     e.preventDefault();
     loginCall(
-      { email: email.current.value, password: password.current.value },
+      { username: username.current.value, password: password.current.value },
       dispatch
     );
   };
@@ -29,11 +29,11 @@ export default function Login() {
         <div className="loginRight">
           <form className="loginBox" onSubmit={handleClick}>
             <input
-              placeholder="Email"
-              type="email"
+              placeholder="Username"
+              type="username"
               required
               className="loginInput"
-              ref={email}
+              ref={username}
             />
             <input
               placeholder="Password"

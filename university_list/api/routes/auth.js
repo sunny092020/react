@@ -7,11 +7,13 @@ router.post("/register", async (req, res) => {
   try {
     username = req.body.username;
     password = req.body.password;
+    email = req.body.email;
 
     //create new user
-    users.username = {
+    users[username] = {
       'username' : username,
-      'password' : password
+      'password' : password,
+      'email' : email,
     };
     
     res.status(200).json();
@@ -23,7 +25,6 @@ router.post("/register", async (req, res) => {
 //LOGIN
 router.post("/login", async (req, res) => {
   try {
-    console.log(req.body);
     const user = users[req.body.username];
     if (!user) {
       res.status(404).json("user not found");
