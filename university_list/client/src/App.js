@@ -7,6 +7,7 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Newsletter from "./pages/newsletter/Newsletter";
 import Topbar from "./components/topbar/Topbar";
+import Sidebar from "./components/sidebar/Sidebar";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 
@@ -16,18 +17,21 @@ function App() {
   return (
     <Router>
       <Topbar />
-      <Switch>
-        <Route exact path="/">
-          {user ? <Home /> : <Register />}
-        </Route>
-        <Route path="/users">
-          <UserList />
-        </Route>
-        <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
-        <Route path="/newsletter">
-          {user ? <Redirect to="/" /> : <Newsletter />}
-        </Route>
-      </Switch>
+      <div className="container">
+        <Sidebar />
+        <Switch>
+          <Route exact path="/">
+            {user ? <Home /> : <Register />}
+          </Route>
+          <Route path="/users">
+            <UserList />
+          </Route>
+          <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
+          <Route path="/newsletter">
+            {user ? <Redirect to="/" /> : <Newsletter />}
+          </Route>
+        </Switch>
+      </div>
     </Router>
   );
 }
