@@ -1,8 +1,11 @@
+import "./App.css";
+
 import Home from "./pages/home/Home";
 import UserList from "./pages/userList/UserList";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Newsletter from "./pages/newsletter/Newsletter";
+import Topbar from "./components/topbar/Topbar";
 
 import {
   BrowserRouter as Router,
@@ -16,9 +19,9 @@ import { AuthContext } from "./context/AuthContext";
 function App() {
   const { user } = useContext(AuthContext);
 
-  console.log(user);
   return (
     <Router>
+      <Topbar />
       <Switch>
         <Route exact path="/">
           {user ? <Home /> : <Register />}
