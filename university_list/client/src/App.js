@@ -1,18 +1,12 @@
 import "./App.css";
 
 import Home from "./pages/home/Home";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import UserList from "./pages/userList/UserList";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Newsletter from "./pages/newsletter/Newsletter";
 import Topbar from "./components/topbar/Topbar";
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 
