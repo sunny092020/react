@@ -1,5 +1,4 @@
 import Topbar from "../../components/topbar/Topbar";
-import University from "../../components/university/University";
 import "./home.css"
 
 export default function Home() {
@@ -7,7 +6,7 @@ export default function Home() {
     <>
       <Topbar />
       <div className="homeContainer">
-        <University />
+        Home
       </div>
     </>
   );
