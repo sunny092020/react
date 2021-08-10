@@ -117,6 +117,20 @@ export default function UniversityList() {
     { field: "id", headerName: "No", width: 100 },
     { field: "name", headerName: "Name", width: 500 },
     { field: "country", headerName: "Country", width: 300 },
+    {
+      field: "web_pages",
+      headerName: "Web pages",
+      width: 500,
+      renderCell: (params) => {
+        return (
+          <ul>
+            <li><a href="https://google.com">Google1</a></li>
+            <li><a href="https://google.com">Google2</a></li>
+            <li><a href="https://google.com">Google3</a></li>
+          </ul>
+        );
+      },
+    },
   ];
 
   const [selectedRows, setSelectedRows] = React.useState([]);
