@@ -11,11 +11,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from '@material-ui/styles';
 import { createTheme } from '@material-ui/core/styles';
 
-import {
-  GridToolbarDensitySelector,
-  GridToolbarFilterButton,
-} from '@material-ui/data-grid';
-
 function escapeRegExp(value) {
   return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 }
@@ -51,10 +46,6 @@ function QuickSearchToolbar(props) {
 
   return (
     <div className={classes.root}>
-      <div>
-        <GridToolbarFilterButton />
-        <GridToolbarDensitySelector />
-      </div>
       <TextField
         variant="standard"
         value={props.value}
