@@ -87,25 +87,25 @@ QuickSearchToolbar.propTypes = {
 };
 
 export default function UniversityList() {
-  const [data, setData] = useState([]);
+  const [gridData, setGridData] = useState([]);
+  const [fileData, setFileData] = useState([]);
   const [searchText, setSearchText] = React.useState('');
 
   const requestSearch = (searchValue) => {
     setSearchText(searchValue);
     const searchRegex = new RegExp(escapeRegExp(searchValue), 'i');
-    const filteredRows = data.filter((row) => {
+    const filteredRows = fileData.filter((row) => {
       return Object.keys(row).some((field) => {
         return searchRegex.test(row[field]);
       });
     });
-    console.log(filteredRows);
-    setData(filteredRows);
+    setGridData(filteredRows);
   };
 
-  const getData=()=> { fetch("world_universities_and_domains.json").then((r) => r.json())
+  const getFileData=()=> { fetch("world_universities_and_domains.json").then((r) => r.json())
     .then((data) => {
         console.log("finish fetching");
-        setData(data.map((currElement, index) => {
+        setFileData(data.map((currElement, index) => {
             currElement.id = index+1;
             return currElement;
           })
@@ -114,8 +114,12 @@ export default function UniversityList() {
   };
 
   useEffect(()=>{
-    getData()
+    getFileData()
   },[])
+
+  useEffect(()=>{
+    setGridData(fileData)
+  },[fileData])
 
   const columns = [
     { field: "id", headerName: "No", width: 100 },
@@ -127,7 +131,7 @@ export default function UniversityList() {
     <div className="universityList">
       <DataGrid
         components={{ Toolbar: QuickSearchToolbar }}
-        rows={data}
+        rows={gridData}
         disableSelectionOnClick
         columns={columns}
         pageSize={10}
