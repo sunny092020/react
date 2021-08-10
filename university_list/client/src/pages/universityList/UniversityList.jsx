@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 import ClearIcon from '@material-ui/icons/Clear';
@@ -118,8 +119,10 @@ export default function UniversityList() {
     { field: "country", headerName: "Country", width: 300 },
   ];
 
+  const [selectedRows, setSelectedRows] = React.useState([]);
+
   return (
-    <div className="universityList">
+    <div className="universityList" style={{ height: 700, width: '80%' }}>
       <DataGrid
         components={{ Toolbar: QuickSearchToolbar }}
         rows={gridData}
@@ -134,7 +137,11 @@ export default function UniversityList() {
             clearSearch: () => requestSearch(''),
           },
         }}
+        onSelectionModelChange={rows => setSelectedRows(rows)}
       />
+      <Button variant="contained" color="primary" onClick={() => {console.table(selectedRows)}}>
+        Add to favorites
+      </Button>
     </div>
   );
 }
