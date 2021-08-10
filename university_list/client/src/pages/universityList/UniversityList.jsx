@@ -8,8 +8,8 @@ import TextField from '@material-ui/core/TextField';
 
 import ClearIcon from '@material-ui/icons/Clear';
 import SearchIcon from '@material-ui/icons/Search';
-import { createMuiTheme } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 import {
   GridToolbarDensitySelector,
@@ -20,7 +20,7 @@ function escapeRegExp(value) {
   return value.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 }
 
-const defaultTheme = createMuiTheme();
+const defaultTheme = createTheme();
 const useStyles = makeStyles(
   (theme) => ({
     root: {
@@ -121,18 +121,6 @@ export default function UniversityList() {
     { field: "id", headerName: "No", width: 100 },
     { field: "name", headerName: "Name", width: 500 },
     { field: "country", headerName: "Country", width: 300 },
-    {
-      field: "web_pages",
-      headerName: "Web pages",
-      width: 150,
-      renderCell: (params) => {
-        return (
-          params.row.web_pages.map((url, index) => {
-            return (<> <a href={url}>{url}</a> <br/> </>)
-          })
-        );
-      },
-    },
   ];
 
   return (
