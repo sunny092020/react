@@ -1,6 +1,5 @@
 import "./universityList.css";
 import { DataGrid } from "@material-ui/data-grid";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function UniversityList() {
@@ -11,7 +10,7 @@ export default function UniversityList() {
         console.log("finish fetching");
         setData(data.map((currElement, index) => {
             currElement.id = index+1;
-            return currElement; //equivalent to list[index]
+            return currElement;
           })
         );
     })
@@ -23,8 +22,20 @@ export default function UniversityList() {
 
   const columns = [
     { field: "id", headerName: "No", width: 100 },
-    { field: "name", headerName: "Name", width: 600 },
-    { field: "country", headerName: "Country", width: 500 },
+    { field: "name", headerName: "Name", width: 500 },
+    { field: "country", headerName: "Country", width: 300 },
+    {
+      field: "web_pages",
+      headerName: "Web pages",
+      width: 150,
+      renderCell: (params) => {
+        return (
+          params.row.web_pages.map((url, index) => {
+            return (<> <a href={url}>{url}</a> <br/> </>)
+          })
+        );
+      },
+    },
   ];
 
   return (
