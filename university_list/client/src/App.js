@@ -28,7 +28,7 @@ function App() {
             <UserList />
           </Route>
           <Route path="/universities">
-            <UniversityList />
+            {user ? <UniversityList /> : <Register />}
           </Route>
           <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
           <Route path="/newsletter">

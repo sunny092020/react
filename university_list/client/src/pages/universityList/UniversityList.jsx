@@ -124,7 +124,7 @@ export default function UniversityList() {
       renderCell: (params) => {
         return (
           params.row.web_pages.map((url, index) => {
-            return (<div key={index}> <a  href={url}>{url}</a> | </div>)
+            return (<div key={index}>&nbsp;[<a  href={url}>{url}</a>]&nbsp;</div>)
           })
         );
       },
