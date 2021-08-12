@@ -7,6 +7,16 @@ import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import UniversityItem from "./UniversityItem"; 
+import { makeStyles } from '@material-ui/core/styles';
+import Pagination from '@material-ui/lab/Pagination';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
 
 export default function UniversityList() {
   const [gridData, setGridData] = useState([]);
@@ -23,8 +33,13 @@ export default function UniversityList() {
     getFileData()
   },[])
 
+  const classes = useStyles();
+
   return (
     <div className="universityList">
+      <div className={classes.root}>
+        <Pagination count={10} color="primary" />
+      </div>
       {fileData.map((u, index) => {
         return <UniversityItem key={index} university={u}/>;
       })}
