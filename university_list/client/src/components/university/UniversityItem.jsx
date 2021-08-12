@@ -13,6 +13,7 @@ export default function UniversityItem({university}) {
       <span>
         <h3 className="list-h3">{university.name}</h3>
         <p className="list-p">{university.country}</p>
+        <p className="list-p">{university['state-province']}</p>
         {university.web_pages.map((url, index) => {
           return (<p className="list-p" key={index}><a  href={url}>{url}</a></p>)
         })}
