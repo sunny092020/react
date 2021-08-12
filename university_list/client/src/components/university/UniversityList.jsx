@@ -33,14 +33,33 @@ export default function UniversityList() {
     getFileData()
   },[])
 
+  const pageSize = 10;
+  useEffect(()=>{
+    setGridData(fileData.slice(0, pageSize));
+  },[fileData])
+
   const classes = useStyles();
+  const pageNum = Math.round(fileData.length/pageSize);
+
+  const onChange = function(event, page) {
+    console.log(page);
+    const gridData = fileData.slice(pageSize*(page-1), pageSize*page);
+    setGridData(gridData);
+  };
 
   return (
     <div className="universityList">
       <div className={classes.root}>
-        <Pagination count={10} color="primary" />
+        <Pagination
+          count={pageNum}
+          color="primary"
+          onChange={onChange}
+          showFirstButton={true}
+          showLastButton={true}
+          variant="outlined"
+        />
       </div>
-      {fileData.map((u, index) => {
+      {gridData.map((u, index) => {
         return <UniversityItem key={index} university={u}/>;
       })}
     </div>
