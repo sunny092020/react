@@ -5,7 +5,6 @@ import * as React from 'react';
 
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import UniversityItem from "./UniversityItem"; 
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
