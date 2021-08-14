@@ -26,7 +26,7 @@ function App() {
           </Route>
           <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
           <Route path="/newsletter">
-            {user ? <Redirect to="/" /> : <Newsletter />}
+            {user ? <Newsletter /> : <Register />}
           </Route>
         </Switch>
       </div>

@@ -29,7 +29,9 @@ export default function Topbar() {
       <div className="topbarRight">
         <div className="topbarLinks">
           <span className="topbarLink">Homepage</span>
-          <span className="topbarLink">Newsletter</span>
+          <Link to="/newsletter">
+            <span className="topbarLink">Newsletter</span>
+          </Link>
         </div>
       </div>
     </div>
