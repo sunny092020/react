@@ -21,12 +21,13 @@ const useStyles = makeStyles((theme) => ({
 export default function UniversityList() {
   const [gridData, setGridData] = useState([]);
   const [fileData, setFileData] = useState([]);
+  const [totalPage, setTotalPage] = useState(1);
+  const [page, setPage] = useState(1);
+
   const keyword = useSelector(state => state.search.value)
-  console.log(keyword);
 
   const getFileData=()=> { fetch("world_universities_and_domains.json").then((r) => r.json())
     .then((data) => {
-        console.log("finish fetching");
         setFileData(data);
     })
   };
@@ -36,24 +37,29 @@ export default function UniversityList() {
   },[])
 
   const pageSize = 10;
-  useEffect(()=>{
-    setGridData(fileData.slice(0, pageSize));
-  },[fileData])
 
-  const classes = useStyles();
-  const pageNum = Math.round(fileData.length/pageSize);
+  useEffect(()=>{
+    const filteredData = fileData.filter(
+      item => (
+        item.name.includes(keyword) || 
+        item.country.includes(keyword) || 
+        item.alpha_two_code.includes(keyword)
+      )
+    );
+    const gridData = filteredData.slice(pageSize*(page-1), pageSize*page);
+    setTotalPage(Math.round(filteredData.length/pageSize))
+    setGridData(gridData);
+  },[fileData, keyword, page]);
 
   const onChange = function(event, page) {
-    console.log(page);
-    const gridData = fileData.slice(pageSize*(page-1), pageSize*page);
-    setGridData(gridData);
+    setPage(page);
   };
 
   return (
     <div className="universityList">
-      <div className={classes.root}>
+      <div className={useStyles().root}>
         <Pagination
-          count={pageNum}
+          count={totalPage}
           color="primary"
           onChange={onChange}
           showFirstButton={true}
