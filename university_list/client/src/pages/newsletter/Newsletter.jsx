@@ -1,5 +1,8 @@
 import "./newsletter.css"
 import { useRef } from "react";
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import React from 'react';
 
 export default function Newsletter() {
   const inputEl = useRef(null);
@@ -8,9 +11,9 @@ export default function Newsletter() {
   };
   return (
     <div className="newsLetter">
-      <input ref={inputEl} type="text" placeholder="Email" />
+      <Input inputRef={inputEl} type="text" placeholder="Email" />
       <br/><br/>
-      <button onClick={onButtonClick}>Subscribe</button>
+      <Button onClick={onButtonClick}>Subscribe</Button>
     </div>
   );
 }
