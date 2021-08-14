@@ -46,8 +46,12 @@ export default function UniversityList() {
         item.alpha_two_code.includes(keyword)
       )
     );
-    const gridData = filteredData.slice(pageSize*(page-1), pageSize*page);
-    setTotalPage(Math.round(filteredData.length/pageSize))
+    const totalPage = Math.round(filteredData.length/pageSize) + 1;
+    setTotalPage(totalPage);
+
+    const cur_page = page > totalPage ? totalPage : page;
+    setPage(cur_page);
+    const gridData = filteredData.slice(pageSize*(cur_page-1), pageSize*cur_page);
     setGridData(gridData);
   },[fileData, keyword, page]);
 
