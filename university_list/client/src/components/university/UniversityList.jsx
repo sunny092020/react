@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import UniversityItem from "./UniversityItem"; 
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
+import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
 export default function UniversityList() {
   const [gridData, setGridData] = useState([]);
   const [fileData, setFileData] = useState([]);
+  const keyword = useSelector(state => state.search.value)
+  console.log(keyword);
 
   const getFileData=()=> { fetch("world_universities_and_domains.json").then((r) => r.json())
     .then((data) => {
