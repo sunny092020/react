@@ -14,13 +14,13 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import axios from "axios";
 
-export default function UniversityItem({university}) {
+export default function UniversityItem({university, favourites}) {
   const { user } = useContext(AuthContext);
   const  [favourite, setFavorite]  = useState(true);
 
   useEffect(()=>{
-    setFavorite(user.favourites.includes(university.name));
-  }, [user, university]);
+    setFavorite(favourites.includes(university.name));
+  }, [user, university, favourites]);
 
   const toggleFavorite = () => {
     axios.post("/favourites/toggle", {

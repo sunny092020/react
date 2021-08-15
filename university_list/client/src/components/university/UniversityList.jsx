@@ -9,6 +9,9 @@ import UniversityItem from "./UniversityItem";
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 import { useSelector } from 'react-redux'
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,6 +26,8 @@ export default function UniversityList() {
   const [fileData, setFileData] = useState([]);
   const [totalPage, setTotalPage] = useState(1);
   const [page, setPage] = useState(1);
+  const { user } = useContext(AuthContext);
+  const [favourites, setFavourites] = useState([]);
 
   const keyword = useSelector(state => state.search.value)
 
@@ -53,7 +58,14 @@ export default function UniversityList() {
     setPage(cur_page);
     const gridData = filteredData.slice(pageSize*(cur_page-1), pageSize*cur_page);
     setGridData(gridData);
-  },[fileData, keyword, page]);
+
+    axios.get("/favourites/" + user.username, {})
+    .then(function (response) {
+      setFavourites(response.data);
+    })
+    .catch(function (error) {
+    });
+  },[user, fileData, keyword, page]);
 
   const onChange = function(event, page) {
     setPage(page);
@@ -72,7 +84,7 @@ export default function UniversityList() {
         />
       </div>
       {gridData.map((u, index) => {
-        return <UniversityItem key={index} university={u}/>;
+        return <UniversityItem key={index} university={u} favourites={favourites} />;
       })}
     </div>
   );
