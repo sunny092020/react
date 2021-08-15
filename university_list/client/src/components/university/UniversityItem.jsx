@@ -12,6 +12,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import axios from "axios";
 
 export default function UniversityItem({university}) {
   const { user } = useContext(AuthContext);
@@ -22,7 +23,16 @@ export default function UniversityItem({university}) {
   }, [user, university]);
 
   const toggleFavorite = () => {
-    setFavorite(!favourite);
+    axios.post("/favourite/toggle", {
+      "username" : user.username,
+      "favourite" : !favourite,
+      "university" : university.name
+    })
+    .then(function (response) {
+      setFavorite(!favourite);
+    })
+    .catch(function (error) {
+    });
   };
 
   return (
