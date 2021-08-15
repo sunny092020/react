@@ -8,8 +8,11 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import AddIcon from '@material-ui/icons/Add';
 import DoneIcon from '@material-ui/icons/Done';
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function UniversityItem({university}) {
+  const { user } = useContext(AuthContext);
   return (
     <div className="ws-tile-three-line-text">
       <span>
@@ -19,7 +22,9 @@ export default function UniversityItem({university}) {
         {university.web_pages.map((url, index) => {
           return (<p className="list-p" key={index}><a  href={url}>{url}</a></p>)
         })}
-        <AddIcon className="addIcon"/><DoneIcon className="doneIcon"/>
+        {user.favourites.includes(university.name) ? 
+          <DoneIcon className="doneIcon"/> : 
+          <AddIcon className="addIcon"/>}
       </span>
       <br/><br/>
     </div>
