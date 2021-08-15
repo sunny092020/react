@@ -6,6 +6,8 @@ import * as React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import AddIcon from '@material-ui/icons/Add';
+import DoneIcon from '@material-ui/icons/Done';
 
 export default function UniversityItem({university}) {
   return (
@@ -17,6 +19,7 @@ export default function UniversityItem({university}) {
         {university.web_pages.map((url, index) => {
           return (<p className="list-p" key={index}><a  href={url}>{url}</a></p>)
         })}
+        <AddIcon className="addIcon"/><DoneIcon className="doneIcon"/>
       </span>
       <br/><br/>
     </div>
