@@ -1,6 +1,5 @@
 const router = require("express").Router();
-
-let users = {};
+const fs = require('fs');
 
 //REGISTER
 router.post("/register", async (req, res) => {
@@ -9,13 +8,18 @@ router.post("/register", async (req, res) => {
     password = req.body.password;
     email = req.body.email;
 
+    let rawdata = fs.readFileSync('users.json');
+    let users = JSON.parse(rawdata);
+
     //create new user
     users[username] = {
       'username' : username,
       'password' : password,
       'email' : email,
+      'favourites' : [],
     };
     
+    fs.writeFileSync('users.json', JSON.stringify(users));
     res.status(200).json();
   } catch (err) {
     res.status(500).json(err)
@@ -25,7 +29,15 @@ router.post("/register", async (req, res) => {
 //LOGIN
 router.post("/login", async (req, res) => {
   try {
+
+    let rawdata = fs.readFileSync('users.json');
+    let users = JSON.parse(rawdata);
+    console.log(`users ${users}`);
+
     const user = users[req.body.username];
+
+    console.log(`user ${users[[req.body.username]]}`);
+
     if (!user) {
       res.status(404).json("user not found");
       return;
