@@ -10,9 +10,21 @@ import AddIcon from '@material-ui/icons/Add';
 import DoneIcon from '@material-ui/icons/Done';
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 export default function UniversityItem({university}) {
   const { user } = useContext(AuthContext);
+  const  [favourite, setFavorite]  = useState(true);
+
+  useEffect(()=>{
+    setFavorite(user.favourites.includes(university.name));
+  }, [user, university]);
+
+  const toggleFavorite = () => {
+    setFavorite(!favourite);
+  };
+
   return (
     <div className="ws-tile-three-line-text">
       <span>
@@ -22,9 +34,9 @@ export default function UniversityItem({university}) {
         {university.web_pages.map((url, index) => {
           return (<p className="list-p" key={index}><a  href={url}>{url}</a></p>)
         })}
-        {user.favourites.includes(university.name) ? 
-          <DoneIcon className="doneIcon"/> : 
-          <AddIcon className="addIcon"/>}
+        {favourite ? 
+          <FavoriteIcon onClick={toggleFavorite} className="favoriteIcon"/> : 
+          <FavoriteBorderIcon onClick={toggleFavorite} className="favoriteIcon" />}
       </span>
       <br/><br/>
     </div>

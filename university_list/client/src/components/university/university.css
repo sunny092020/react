@@ -35,12 +35,8 @@
   height: 100%;
 }
 
-.addIcon {
-  color: #fff;
-  background-color: #1976d2;
-}
-
-.doneIcon {
-  color: #fff;
-  background-color: #8ae0a7;
+.favoriteIcon {
+  cursor: pointer;
+  color: #1976d2;
+  background-color: #fff;
 }
