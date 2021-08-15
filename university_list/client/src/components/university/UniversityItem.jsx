@@ -23,7 +23,7 @@ export default function UniversityItem({university}) {
   }, [user, university]);
 
   const toggleFavorite = () => {
-    axios.post("/favourite/toggle", {
+    axios.post("/favourites/toggle", {
       "username" : user.username,
       "favourite" : !favourite,
       "university" : university.name

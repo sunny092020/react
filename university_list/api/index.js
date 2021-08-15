@@ -16,7 +16,7 @@ app.use(morgan("common"));
 
 app.use("/api/auth", authRoute);
 app.use("/api/subscription", subscriptionRoute);
-app.use("/api/favourite", favouriteRoute);
+app.use("/api/favourites", favouriteRoute);
 
 app.listen(8800, () => {
   console.log("Backend server is running!");
