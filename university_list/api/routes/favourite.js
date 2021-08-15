@@ -34,4 +34,14 @@ router.post("/toggle", async (req, res) => {
   }
 });
 
+router.get("/:username", async (req, res) => {
+  try {
+    let rawdata = fs.readFileSync('users.json');
+    let users = JSON.parse(rawdata);
+    res.status(200).json(users[req.params.username].favourites);
+  } catch (err) {
+    res.status(500).json(err)
+  }
+});
+
 module.exports = router;
