@@ -1,7 +1,7 @@
 import "./topbar.css";
 import { Link } from "react-router-dom";
 import { Search } from "@material-ui/icons";
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { searchByKeyword } from '../../features/search/searchSlice'
 export default function Topbar() {
   const dispatch = useDispatch()

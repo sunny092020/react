@@ -6,6 +6,7 @@ import * as React from 'react';
 import UniversityItem from "./UniversityItem"; 
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
+import Container from '@material-ui/core/Container';
 import { useSelector } from 'react-redux'
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
@@ -70,8 +71,8 @@ export default function UniversityList() {
   };
 
   return (
-    <div className="universityList">
-      <div className={useStyles().root}>
+    <Container className="universityList">
+      <Container className={useStyles().root}>
         <Pagination
           count={totalPage}
           color="primary"
@@ -80,10 +81,10 @@ export default function UniversityList() {
           showLastButton={true}
           variant="outlined"
         />
-      </div>
+      </Container>
       {gridData.map((u, index) => {
         return <UniversityItem key={index} university={u} favourites={favourites} />;
       })}
-    </div>
+    </Container>
   );
 }
