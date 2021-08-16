@@ -2,7 +2,6 @@ import "./App.css";
 
 import Home from "./pages/home/Home";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import UserList from "./pages/userList/UserList";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import Newsletter from "./pages/newsletter/Newsletter";
@@ -20,9 +19,6 @@ function App() {
         <Switch>
           <Route exact path="/">
             {user ? <Home /> : <Register />}
-          </Route>
-          <Route path="/users">
-            <UserList />
           </Route>
           <Route path="/login">{user ? <Redirect to="/" /> : <Login />}</Route>
           <Route path="/newsletter">
