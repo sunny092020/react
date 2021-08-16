@@ -3,11 +3,6 @@ import "./university.css";
 import { useState, useEffect } from "react";
 import * as React from 'react';
 
-import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import AddIcon from '@material-ui/icons/Add';
-import DoneIcon from '@material-ui/icons/Done';
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import FavoriteIcon from '@material-ui/icons/Favorite';
