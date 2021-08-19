@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
 import React from 'react';
 import axios from "axios";
+import Container from '@material-ui/core/Container';
 
 export default function Newsletter() {
   const inputEl = useRef(null);
@@ -20,10 +21,10 @@ export default function Newsletter() {
     });
   };
   return (
-    <div className="newsLetter">
+    <Container className="newsLetter">
       <Input inputRef={inputEl} type="text" placeholder="Email" />
       <br/><br/>
       <Button onClick={onButtonClick}>Subscribe</Button>
-    </div>
+    </Container>
   );
 }
