@@ -1,12 +1,18 @@
 import "./topbar.css";
 import { Link } from "react-router-dom";
 import { Search } from "@material-ui/icons";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useDispatch } from 'react-redux'
 import { searchByKeyword } from '../../features/search/searchSlice'
 export default function Topbar() {
   const dispatch = useDispatch()
   function handleInputChange(e){
     dispatch(searchByKeyword(e.target.value))
+  };
+
+  const logout = () => {
+    console.log('logout');
+    localStorage.clear();
   };
 
   return (
@@ -28,10 +34,13 @@ export default function Topbar() {
       </div>
       <div className="topbarRight">
         <div className="topbarLinks">
-          <span className="topbarLink">Homepage</span>
+          <Link to="/">
+            <span className="topbarLink">Homepage</span>
+          </Link>
           <Link to="/newsletter">
             <span className="topbarLink">Newsletter</span>
           </Link>
+          <ExitToAppIcon className="logout" onClick={logout} />
         </div>
       </div>
     </div>
