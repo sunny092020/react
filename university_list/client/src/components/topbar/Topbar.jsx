@@ -4,15 +4,18 @@ import { Search } from "@material-ui/icons";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useDispatch } from 'react-redux'
 import { searchByKeyword } from '../../features/search/searchSlice'
+import { useHistory } from "react-router-dom";
+
 export default function Topbar() {
+  const history = useHistory();
   const dispatch = useDispatch()
   function handleInputChange(e){
     dispatch(searchByKeyword(e.target.value))
   };
 
   const logout = () => {
-    console.log('logout');
     localStorage.clear();
+    history.push("/login");
   };
 
   return (
