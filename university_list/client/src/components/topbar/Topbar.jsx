@@ -47,7 +47,7 @@ export default function Topbar() {
           <Link to="/newsletter">
             <span className="topbarLink">Newsletter</span>
           </Link>
-          {user.username}
+          {user.username}&nbsp;&nbsp;&nbsp;
           <ExitToAppIcon className="logout" onClick={handleLogout} />
         </div>
       </div>
