@@ -10,14 +10,11 @@ import Topbar from "../../components/topbar/Topbar";
 export default function Newsletter() {
   const inputEl = useRef(null);
   const onButtonClick = () => {
-    console.log(inputEl.current.value);
     axios.post("/subscription/subscribe", {"email" : inputEl.current.value})
     .then(function (response) {
-      console.log(response);
       alert(`${inputEl.current.value} has been subscribed!`);
     })
     .catch(function (error) {
-      console.log(error);
       alert(`${inputEl.current.value} cannot be subscribed!`);
     });
   };
