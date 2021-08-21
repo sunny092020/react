@@ -36,7 +36,7 @@ export default function Register() {
         <div className="loginLeft">
           <h3 className="loginLogo">My app</h3>
           <span className="loginDesc">
-            See universities around the world.
+            Apps
           </span>
         </div>
         <div className="loginRight">

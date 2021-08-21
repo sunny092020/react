@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { searchByKeyword } from '../../features/search/searchSlice'
 import { useHistory } from "react-router-dom";
 import { logout } from '../../features/auth/authSlice'
+import { useSelector } from 'react-redux'
 
 export default function Topbar() {
   const history = useHistory();
@@ -18,6 +19,8 @@ export default function Topbar() {
     dispatch(logout());
     history.push("/");
   };
+
+  const user = useSelector(state => state.auth.value)
 
   return (
     <div className="topbarContainer">
@@ -44,6 +47,7 @@ export default function Topbar() {
           <Link to="/newsletter">
             <span className="topbarLink">Newsletter</span>
           </Link>
+          {user.username}
           <ExitToAppIcon className="logout" onClick={handleLogout} />
         </div>
       </div>

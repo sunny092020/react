@@ -5,6 +5,7 @@ import Input from '@material-ui/core/Input';
 import React from 'react';
 import axios from "axios";
 import Container from '@material-ui/core/Container';
+import Topbar from "../../components/topbar/Topbar";
 
 export default function Newsletter() {
   const inputEl = useRef(null);
@@ -21,10 +22,13 @@ export default function Newsletter() {
     });
   };
   return (
-    <Container className="newsLetter">
-      <Input inputRef={inputEl} type="text" placeholder="Email" />
-      <br/><br/>
-      <Button onClick={onButtonClick}>Subscribe</Button>
-    </Container>
+    <div className="homeContainer">
+      <Topbar />
+      <Container className="newsLetter">
+        <Input inputRef={inputEl} type="text" placeholder="Email" />
+        <br/><br/>
+        <Button onClick={onButtonClick}>Subscribe</Button>
+      </Container>
+    </div>
   );
 }

@@ -4,8 +4,12 @@ import { useDispatch } from 'react-redux'
 import { login } from '../../features/auth/authSlice'
 import axios from "axios";
 import Button from '@material-ui/core/Button';
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
+  const history = useHistory();
+
   const username = useRef();
   const password = useRef();
 
@@ -20,6 +24,7 @@ export default function Login() {
     axios.post("/auth/login", userCredentails
     ).then(function (response) {
       dispatch(login(response.data));
+      history.push("/");
     })
     .catch(function (error) {
       alert(error);
@@ -53,7 +58,9 @@ export default function Login() {
               ref={password}
             />
             <Button className="loginButton" onClick={handleClick}>Log In</Button>
-            <button className="loginRegisterButton">"Create a New Account"</button>
+            <Link to="/register">
+              <button className="loginRegisterButton">"Create a New Account"</button>
+            </Link>
           </form>
         </div>
       </div>
