@@ -6,6 +6,7 @@ import axios from "axios";
 import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import Container from '@material-ui/core/Container';
 
 export default function Login() {
   const history = useHistory();
@@ -37,29 +38,29 @@ export default function Login() {
         <div className="loginLeft">
           <h3 className="loginLogo">My app</h3>
           <span className="loginDesc">
-            This is login screen.
+            Apps
           </span>
         </div>
         <div className="loginRight">
           <form className="loginBox" onSubmit={handleClick}>
             <input
               placeholder="Username"
-              type="username"
               required
-              className="loginInput"
               ref={username}
+              className="loginInput"
             />
             <input
               placeholder="Password"
-              type="password"
               required
-              minLength="6"
-              className="loginInput"
               ref={password}
+              className="loginInput"
+              type="password"
             />
-            <Button className="loginButton" onClick={handleClick}>Log In</Button>
-            <Link to="/register">
-              <button className="loginRegisterButton">"Create a New Account"</button>
+            <Button onClick={handleClick} >
+              Login
+            </Button>
+            <Link className="loginLink" to="/register">
+              <button className="loginRegisterButton">Create a New Account</button>
             </Link>
           </form>
         </div>
