@@ -1,20 +1,29 @@
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import "./login.css";
-import { loginCall } from "../../apiCalls";
-import { AuthContext } from "../../context/AuthContext";
-import { CircularProgress } from "@material-ui/core";
+import { useDispatch } from 'react-redux'
+import { login } from '../../features/auth/authSlice'
+import axios from "axios";
+import Button from '@material-ui/core/Button';
 
 export default function Login() {
   const username = useRef();
   const password = useRef();
-  const { isFetching, dispatch } = useContext(AuthContext);
+
+  const dispatch = useDispatch()
 
   const handleClick = (e) => {
-    e.preventDefault();
-    loginCall(
-      { username: username.current.value, password: password.current.value },
-      dispatch
-    );
+    const userCredentails = {
+      "username" : username.current.value,
+      "password" : password.current.value
+    };
+    
+    axios.post("/auth/login", userCredentails
+    ).then(function (response) {
+      dispatch(login(response.data));
+    })
+    .catch(function (error) {
+      alert(error);
+    });
   };
 
   return (
@@ -43,21 +52,9 @@ export default function Login() {
               className="loginInput"
               ref={password}
             />
-            <button className="loginButton" type="submit" disabled={isFetching}>
-              {isFetching ? (
-                <CircularProgress size="20px" />
-              ) : (
-                "Log In"
-              )}
-            </button>
+            <Button className="loginButton" onClick={handleClick}>Log In</Button>
             <span className="loginForgot">Forgot Password?</span>
-            <button className="loginRegisterButton">
-              {isFetching ? (
-                <CircularProgress size="20px" />
-              ) : (
-                "Create a New Account"
-              )}
-            </button>
+            <button className="loginRegisterButton">"Create a New Account"</button>
           </form>
         </div>
       </div>

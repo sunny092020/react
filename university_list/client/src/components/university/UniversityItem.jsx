@@ -3,14 +3,13 @@ import "./university.css";
 import { useState, useEffect } from "react";
 import * as React from 'react';
 
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { useSelector } from 'react-redux'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import axios from "axios";
 
 export default function UniversityItem({university, favourites}) {
-  const { user } = useContext(AuthContext);
+  const user = useSelector(state => state.auth.value)
   const  [favourite, setFavorite]  = useState(true);
 
   useEffect(()=>{

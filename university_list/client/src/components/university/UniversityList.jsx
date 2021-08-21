@@ -8,8 +8,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
 import Container from '@material-ui/core/Container';
 import { useSelector } from 'react-redux'
-import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,7 +23,8 @@ export default function UniversityList() {
   const [fileData, setFileData] = useState([]);
   const [totalPage, setTotalPage] = useState(1);
   const [page, setPage] = useState(1);
-  const { user } = useContext(AuthContext);
+  const user = useSelector(state => state.auth.value)
+
   const [favourites, setFavourites] = useState([]);
 
   const keyword = useSelector(state => state.search.value)

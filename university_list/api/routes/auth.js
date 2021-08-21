@@ -20,7 +20,7 @@ router.post("/register", async (req, res) => {
     };
     
     fs.writeFileSync('users.json', JSON.stringify(users));
-    res.status(200).json();
+    res.status(200).json(users[username]);
   } catch (err) {
     res.status(500).json(err)
   }
