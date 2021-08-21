@@ -1,31 +1,33 @@
-import "./topbar.css";
-import { Link } from "react-router-dom";
-import { Search } from "@material-ui/icons";
+import './topbar.css';
+import {Link} from 'react-router-dom';
+import {Search} from '@material-ui/icons';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { useDispatch } from 'react-redux'
-import { searchByKeyword } from '../../features/search/searchSlice'
-import { useHistory } from "react-router-dom";
-import { logout } from '../../features/auth/authSlice'
-import { useSelector } from 'react-redux'
+import {useDispatch} from 'react-redux';
+import {searchByKeyword} from '../../features/search/searchSlice';
+import {useHistory} from 'react-router-dom';
+import {logout} from '../../features/auth/authSlice';
+import {useSelector} from 'react-redux';
+import React from 'react';
 
 export default function Topbar() {
   const history = useHistory();
-  const dispatch = useDispatch()
-  function handleInputChange(e){
-    dispatch(searchByKeyword(e.target.value))
-  };
+  const dispatch = useDispatch();
+
+  function handleInputChange(e) {
+    dispatch(searchByKeyword(e.target.value));
+  }
 
   const handleLogout = () => {
     dispatch(logout());
-    history.push("/");
+    history.push('/');
   };
 
-  const user = useSelector(state => state.auth.value)
+  const user = useSelector((state) => state.auth.value);
 
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/" style={{textDecoration: 'none'}}>
           <span className="logo">Universities</span>
         </Link>
       </div>

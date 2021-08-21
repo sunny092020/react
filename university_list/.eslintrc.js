@@ -30,7 +30,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    sourceType: 'script',
+    sourceType: 'module',
   },
   rules: {
     // The rules below are listed in the order they appear on the eslint
@@ -302,9 +302,11 @@ module.exports = {
     'quotes': [2, 'single', {allowTemplateLiterals: true}],
     'require-jsdoc': [2, {
       require: {
-        FunctionDeclaration: true,
-        MethodDefinition: true,
-        ClassDeclaration: true,
+        FunctionDeclaration: false,
+        MethodDefinition: false,
+        ClassDeclaration: false,
+        ArrowFunctionExpression: false,
+        FunctionExpression: false,
       },
     }],
     'semi': 2,
