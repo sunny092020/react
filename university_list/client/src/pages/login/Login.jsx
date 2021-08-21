@@ -53,7 +53,6 @@ export default function Login() {
               ref={password}
             />
             <Button className="loginButton" onClick={handleClick}>Log In</Button>
-            <span className="loginForgot">Forgot Password?</span>
             <button className="loginRegisterButton">"Create a New Account"</button>
           </form>
         </div>
