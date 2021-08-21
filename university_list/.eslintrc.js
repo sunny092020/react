@@ -17,6 +17,8 @@
 'use strict';
 
 module.exports = {
+  root: true,
+  extends: ['eslint:recommended', 'plugin:react/recommended'],
   env: {
     browser: true,
     commonjs: true,
@@ -25,6 +27,10 @@ module.exports = {
   },
   parserOptions: {
     ecmaVersion: 8,
+    ecmaFeatures: {
+      jsx: true,
+    },
+    sourceType: 'script',
   },
   rules: {
     // The rules below are listed in the order they appear on the eslint
@@ -358,5 +364,10 @@ module.exports = {
     // 'symbol-description': 0,
     // 'template-curly-spacing': 0,
     'yield-star-spacing': [2, 'after'],
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 };
