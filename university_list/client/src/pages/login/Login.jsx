@@ -1,11 +1,12 @@
-import { useRef } from "react";
-import "./login.css";
-import { useDispatch } from 'react-redux'
-import { login } from '../../features/auth/authSlice'
-import axios from "axios";
+import {useRef} from 'react';
+import './login.css';
+import {useDispatch} from 'react-redux';
+import {login} from '../../features/auth/authSlice';
+import axios from 'axios';
 import Button from '@material-ui/core/Button';
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
+import React from 'react';
 
 export default function Login() {
   const history = useHistory();
@@ -13,22 +14,22 @@ export default function Login() {
   const username = useRef();
   const password = useRef();
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleClick = (e) => {
     const userCredentails = {
-      "username" : username.current.value,
-      "password" : password.current.value
+      'username': username.current.value,
+      'password': password.current.value,
     };
-    
-    axios.post("/auth/login", userCredentails
-    ).then(function (response) {
+
+    axios.post('/auth/login', userCredentails,
+    ).then(function(response) {
       dispatch(login(response.data));
-      history.push("/");
+      history.push('/');
     })
-    .catch(function (error) {
-      alert(error);
-    });
+        .catch(function(error) {
+          alert(error);
+        });
   };
 
   return (
@@ -59,7 +60,9 @@ export default function Login() {
               Login
             </Button>
             <Link className="loginLink" to="/register">
-              <button className="loginRegisterButton">Create a New Account</button>
+              <button className="loginRegisterButton">
+                Create a New Account
+              </button>
             </Link>
           </form>
         </div>

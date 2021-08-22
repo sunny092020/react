@@ -1,8 +1,9 @@
-import axios from "axios";
-import { useRef } from "react";
-import "./register.css";
-import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
+import axios from 'axios';
+import {useRef} from 'react';
+import './register.css';
+import {useHistory} from 'react-router';
+import {Link} from 'react-router-dom';
+import React from 'react';
 
 export default function Register() {
   const username = useRef();
@@ -14,19 +15,15 @@ export default function Register() {
   const handleClick = async (e) => {
     e.preventDefault();
     if (passwordAgain.current.value !== password.current.value) {
-      passwordAgain.current.setCustomValidity("Passwords don't match!");
+      passwordAgain.current.setCustomValidity('Passwords don\'t match!');
     } else {
       const user = {
         username: username.current.value,
         email: email.current.value,
         password: password.current.value,
       };
-      try {
-        await axios.post("/auth/register", user);
-        history.push("/login");
-      } catch (err) {
-        console.log(err);
-      }
+      await axios.post('/auth/register', user);
+      history.push('/login');
     }
   };
 

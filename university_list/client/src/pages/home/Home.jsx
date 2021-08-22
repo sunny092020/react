@@ -1,6 +1,7 @@
-import UniversityList from "../../components/university/UniversityList"
-import "./home.css"
-import Topbar from "../../components/topbar/Topbar";
+import UniversityList from '../../components/university/UniversityList';
+import './home.css';
+import Topbar from '../../components/topbar/Topbar';
+import React from 'react';
 
 export default function Home() {
   return (
