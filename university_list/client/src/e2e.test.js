@@ -1,4 +1,5 @@
 import puppeteer from 'puppeteer';
+import 'expect-puppeteer';
 
 describe('App.js', () => {
   let browser;
@@ -7,13 +8,11 @@ describe('App.js', () => {
   beforeAll(async () => {
     browser = await puppeteer.launch();
     page = await browser.newPage();
+    await page.goto('https://google.com');
   });
 
-  it('contains the welcome text', async () => {
-    await page.goto('http://localhost:3000');
-    // await page.waitForSelector('.App-welcome-text');
-    // const text = await page.$eval('.App-welcome-text', (e) => e.textContent);
-    // expect(text).toContain('Edit src/App.js and save to reload.');
+  it('should display "google" text on page', async () => {
+    await expect(page).toMatch('google');
   });
 
   afterAll(() => browser.close());
