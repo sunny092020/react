@@ -1,13 +1,13 @@
-const router = require('express').Router();
-const fs = require('fs');
+const router = require("express").Router();
+const fs = require("fs");
 
-router.post('/toggle', async (req, res) => {
+router.post("/toggle", async (req, res) => {
   try {
-    username = req.body.username;
-    favourite = req.body.favourite;
-    university = req.body.university;
+    const username = req.body.username;
+    const favourite = req.body.favourite;
+    const university = req.body.university;
 
-    const rawdata = fs.readFileSync('users.json');
+    const rawdata = fs.readFileSync("users.json");
     const users = JSON.parse(rawdata);
 
     let favourites = users[username].favourites;
@@ -22,7 +22,7 @@ router.post('/toggle', async (req, res) => {
 
     users[username].favourites = favourites;
 
-    fs.writeFileSync('users.json', JSON.stringify(users));
+    fs.writeFileSync("users.json", JSON.stringify(users));
 
     res.status(200).json();
   } catch (err) {
@@ -30,9 +30,9 @@ router.post('/toggle', async (req, res) => {
   }
 });
 
-router.get('/:username', async (req, res) => {
+router.get("/:username", async (req, res) => {
   try {
-    const rawdata = fs.readFileSync('users.json');
+    const rawdata = fs.readFileSync("users.json");
     const users = JSON.parse(rawdata);
     res.status(200).json(users[req.params.username].favourites);
   } catch (err) {
