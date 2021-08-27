@@ -1,3 +1,6 @@
+### Install
+$ cd university_list  
+$ ./script/install.sh  
 ### Start client
 $ cd university_list/client  
 $ yarn start  
