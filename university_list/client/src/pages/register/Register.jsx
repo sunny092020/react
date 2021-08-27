@@ -1,9 +1,9 @@
-import axios from 'axios';
-import {useRef} from 'react';
-import './register.css';
-import {useHistory} from 'react-router';
-import {Link} from 'react-router-dom';
-import React from 'react';
+import axios from "axios";
+import { useRef } from "react";
+import "./register.css";
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
+import React from "react";
 
 export default function Register() {
   const username = useRef();
@@ -15,15 +15,15 @@ export default function Register() {
   const handleClick = async (e) => {
     e.preventDefault();
     if (passwordAgain.current.value !== password.current.value) {
-      passwordAgain.current.setCustomValidity('Passwords don\'t match!');
+      passwordAgain.current.setCustomValidity("Passwords don't match!");
     } else {
       const user = {
         username: username.current.value,
         email: email.current.value,
         password: password.current.value,
       };
-      await axios.post('/auth/register', user);
-      history.push('/login');
+      await axios.post("/auth/register", user);
+      history.push("/login");
     }
   };
 
@@ -32,9 +32,7 @@ export default function Register() {
       <div className="loginWrapper">
         <div className="loginLeft">
           <h3 className="loginLogo">My app</h3>
-          <span className="loginDesc">
-            Apps
-          </span>
+          <span className="loginDesc">Apps</span>
         </div>
         <div className="loginRight">
           <form className="loginBox" onSubmit={handleClick}>

@@ -1,12 +1,12 @@
-import {useRef} from 'react';
-import './login.css';
-import {useDispatch} from 'react-redux';
-import {login} from '../../features/auth/authSlice';
-import axios from 'axios';
-import Button from '@material-ui/core/Button';
-import {Link} from 'react-router-dom';
-import {useHistory} from 'react-router-dom';
-import React from 'react';
+import { useRef } from "react";
+import "./login.css";
+import { useDispatch } from "react-redux";
+import { login } from "../../features/auth/authSlice";
+import axios from "axios";
+import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import React from "react";
 
 export default function Login() {
   const history = useHistory();
@@ -16,20 +16,21 @@ export default function Login() {
 
   const dispatch = useDispatch();
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     const userCredentails = {
-      'username': username.current.value,
-      'password': password.current.value,
+      username: username.current.value,
+      password: password.current.value,
     };
 
-    axios.post('/auth/login', userCredentails,
-    ).then(function(response) {
-      dispatch(login(response.data));
-      history.push('/');
-    })
-        .catch(function(error) {
-          alert(error);
-        });
+    axios
+      .post("/auth/login", userCredentails)
+      .then(function (response) {
+        dispatch(login(response.data));
+        history.push("/");
+      })
+      .catch(function (error) {
+        alert(error);
+      });
   };
 
   return (
@@ -37,9 +38,7 @@ export default function Login() {
       <div className="loginWrapper">
         <div className="loginLeft">
           <h3 className="loginLogo">My app</h3>
-          <span className="loginDesc">
-            Apps
-          </span>
+          <span className="loginDesc">Apps</span>
         </div>
         <div className="loginRight">
           <form className="loginBox" onSubmit={handleClick}>
@@ -56,9 +55,7 @@ export default function Login() {
               className="loginInput"
               type="password"
             />
-            <Button onClick={handleClick} >
-              Login
-            </Button>
+            <Button onClick={handleClick}>Login</Button>
             <Link className="loginLink" to="/register">
               <button className="loginRegisterButton">
                 Create a New Account

@@ -1,9 +1,9 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export const searchSlice = createSlice({
-  name: 'search',
+  name: "search",
   initialState: {
-    value: '',
+    value: "",
   },
   reducers: {
     searchByKeyword: (state, action) => {
@@ -13,6 +13,6 @@ export const searchSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const {searchByKeyword} = searchSlice.actions;
+export const { searchByKeyword } = searchSlice.actions;
 
 export default searchSlice.reducer;
