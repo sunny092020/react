@@ -16,3 +16,7 @@ $ ./script/lint.sh
 ### Prettify  
 $ cd university_list  
 $ yarn prettier --write .  
+### Play with the app  
+access http://localhost:3000   
+login with sunny:pass  
+You can also create new account
