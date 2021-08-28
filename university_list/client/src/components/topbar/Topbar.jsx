@@ -18,6 +18,7 @@ export default function Topbar() {
   }
 
   const handleLogout = () => {
+    dispatch(searchByKeyword(""));
     dispatch(logout());
     history.push("/");
   };
