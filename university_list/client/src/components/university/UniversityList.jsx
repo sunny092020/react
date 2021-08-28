@@ -23,7 +23,7 @@ export default function UniversityList() {
   const [gridData, setGridData] = useState([]);
   const [fileData, setFileData] = useState([]);
   const [totalPage, setTotalPage] = useState(1);
-  const [page, setPage] = useState(1);
+  let [page, setPage] = useState(1);
   const user = useSelector((state) => state.auth.value);
 
   const [favourites, setFavourites] = useState([]);
@@ -53,6 +53,8 @@ export default function UniversityList() {
     );
     const totalPage = Math.ceil(filteredData.length/pageSize);
     setTotalPage(totalPage);
+
+    page = page > totalPage ? 1 : page;
 
     setPage(page);
     const gridData = filteredData.slice(
