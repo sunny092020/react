@@ -51,14 +51,13 @@ export default function UniversityList() {
         item.country.includes(keyword) ||
         item.alpha_two_code.includes(keyword)
     );
-    const totalPage = Math.round(filteredData.length / pageSize) + 1;
+    const totalPage = Math.ceil(filteredData.length/pageSize);
     setTotalPage(totalPage);
 
-    const curPage = page > totalPage ? totalPage : page;
-    setPage(curPage);
+    setPage(page);
     const gridData = filteredData.slice(
-      pageSize * (curPage - 1),
-      pageSize * curPage
+      pageSize * (page - 1),
+      pageSize * page
     );
     setGridData(gridData);
 
